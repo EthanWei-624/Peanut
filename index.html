@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peanuts Gang</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #a2c8f0;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+        }
+        .character-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .character-card {
+            width: 180px;
+            height: 250px;
+            margin: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        .character-card:hover {
+            transform: scale(1.05);
+        }
+        .character-image {
+            width: 100%;
+            height: 180px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .character-name {
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+        .character-card.clicked {
+            transform: rotate(5deg) scale(1.1);
+        }
+         .speech-bubble {
+            position: absolute;
+            background-color: white;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            max-width: 300px;
+            display: none;
+            z-index: 10;
+        }
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent transparent white transparent;
+        }
+        .speech-bubble.show {
+            display: block;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #367c39;
+        }
+        .flying-snoopy {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/3/35/Snoopy_Peanuts.svg/1200px-Snoopy_Peanuts.svg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation: fly 5s linear infinite;
+            display: none;
+        }
+        @keyframes fly {
+            0% {
+                left: -100px;
+                top: 100px;
+                transform: rotate(0deg);
+            }
+            50% {
+                top: 200px;
+            }
+            100% {
+                left: calc(100% + 100px);
+                top: 100px;
+                transform: rotate(360deg);
+            }
+        }
+        .character-card[data-character="charlie"] .character-image {
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/Charlie_Brown.png/220px-Charlie_Brown.png');
+        }
+        .character-card[data-character="snoopy"] .character-image {
+             background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/3/35/Snoopy_Peanuts.svg/1200px-Snoopy_Peanuts.svg.png');
+        }
+         .character-card[data-character="linus"] .character-image {
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/Linus_van_Pelt.svg/1200px-Linus_van_Pelt.svg.png');
+        }
+        .character-card[data-character="lucy"] .character-image {
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Lucy_van_Pelt.svg/1200px-Lucy_van_Pelt.svg.png');
+        }
+        .character-card[data-character="schroeder"] .character-image {
+             background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/Schroeder_Peanuts.svg/1200px-Schroeder_Peanuts.svg.png');
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meet the Peanuts Gang!</h1>
+    </header>
+    <div class="character-container">
+        <div class="character-card" data-character="charlie" onclick="showCharacterSpeech(this, 'Good grief!')">
+            <div class="character-image"></div>
+            <div class="character-name">Charlie Brown</div>
+        </div>
+         <div class="character-card" data-character="snoopy" onclick="showCharacterSpeech(this, 'Woof! I am a cool beagle!')">
+            <div class="character-image"></div>
+            <div class="character-name">Snoopy</div>
+        </div>
+        <div class="character-card" data-character="linus" onclick="showCharacterSpeech(this, 'My blanket is my best friend.')">
+            <div class="character-image"></div>
+            <div class="character-name">Linus</div>
+        </div>
+        <div class="character-card" data-character="lucy" onclick="showCharacterSpeech(this, 'The doctor is in!')">
+            <div class="character-image"></div>
+            <div class="character-name">Lucy</div>
+        </div>
+         <div class="character-card" data-character="schroeder" onclick="showCharacterSpeech(this, 'Beethoven is my hero!')">
+            <div class="character-image"></div>
+            <div class="character-name">Schroeder</div>
+        </div>
+    </div>
+    <div class="speech-bubble" id="character-speech"></div>
+    <div class="button-container">
+        <button onclick="startFlying()">Start Flying</button>
+    </div>
+    <div class="flying-snoopy" id="flying-snoopy"></div>
+    <script>
+        let currentSpeechBubble = null;
+
+        function showCharacterSpeech(element, speech) {
+            if (currentSpeechBubble) {
+                currentSpeechBubble.classList.remove('show');
+            }
+            const speechBubble = document.getElementById('character-speech');
+            speechBubble.textContent = speech;
+            speechBubble.style.top = (element.offsetTop + element.offsetHeight) + 'px';
+            speechBubble.style.left = (element.offsetLeft + (element.offsetWidth / 2) - (speechBubble.offsetWidth / 2)) + 'px';
+            speechBubble.classList.add('show');
+            currentSpeechBubble = speechBubble;
+            element.classList.toggle('clicked');
+        }
+        function startFlying() {
+            document.getElementById('flying-snoopy').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
