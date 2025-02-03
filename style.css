@@ -12,7 +12,7 @@ body {
 
 header {
     background-color: #a2c8f0;
-    padding: 20px;
+    padding: 500px;
     text-align: center;
     width: 100%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -20,7 +20,7 @@ header {
 
 h1 {
     color: #333;
-    font-size: 2.5em;
+    font-size: 100px;
     margin: 0;
 }
 
@@ -122,14 +122,14 @@ button {
 }
 
 button:hover {
-    background-color: #367c39;
+    background-color: #6a7ad5;
 }
 
 .flying-snoopy {
     position: absolute;
     width: 100px;
     height: 100px;
-    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/3/35/Snoopy_Peanuts.svg/1200px-Snoopy_Peanuts.svg.png');
+    background-image: url('https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/snoopy-flying-carolyn-w-james.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     animation: fly 5s linear infinite;
@@ -140,14 +140,14 @@ button:hover {
 @keyframes fly {
     0% {
         left: -120px;
-        top: 50px;
+        top: 200vh;
     }
     50% {
-        top: 150px;
+        top: 250vh;
     }
     100% {
         left: calc(100% + 120px);
-        top: 50px;
+        top: 360vh;
     }
 }
 
@@ -162,21 +162,8 @@ button:hover {
 
 /* Character-specific styles */
 .character-card[data-character="charlie"] .character-image {
-    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/Charlie_Brown.png/220px-Charlie_Brown.png');
+    background-image: url('https://static.wixstatic.com/media/449abe_5bcdc480851443d6b592c87fa3552f4e~mv2.jpg/v1/fill/w_1080,h_1080,al_c,q_85/cb-color.jpg');
 }
-
-.character-card[data-character="snoopy"] .character-image {
-    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/3/35/Snoopy_Peanuts.svg/1200px-Snoopy_Peanuts.svg.png');
-}
-
-.character-card[data-character="linus"] .character-image {
-    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/Linus_van_Pelt.svg/1200px-Linus_van_Pelt.svg.png');
-}
-
-.character-card[data-character="lucy"] .character-image {
-    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Lucy_van_Pelt.svg/1200px-Lucy_van_Pelt.svg.png');
-}
-
-.character-card[data-character="schroeder"] .character-image {
-    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/Schroeder_Peanuts.svg/1200px-Schroeder_Peanuts.svg.png');
+.character-card[data-character="woodstock"] .character-image {
+     background-image: url('https://static.wixstatic.com/media/449abe_da6f6e862186407c867210c856d6e430~mv2.jpg/v1/fill/w_1080,h_1080,al_c,q_85/wo-color.jpg');
 }
