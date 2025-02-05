@@ -10,13 +10,28 @@ body {
     overflow-x: hidden;
 }
 
+
 header {
-    background-color: rgba(162, 200, 240, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 40px;
-    text-align: center;
+    position: relative;
     width: 100%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100vh; /* Full screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Video Background */
+.header-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* Maintains 16:9 aspect ratio */
+    object-fit: cover; /* Ensures the video covers the entire area */
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Moves video to the background */
 }
 
 /* Character Cards */
@@ -69,23 +84,19 @@ header {
     to { opacity: 1; }
 }
 
-/* Button */
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+.flying-button {
+    width: 150px;  /* Adjust size */
+    height: auto;  /* Keeps aspect ratio */
+    cursor: pointer;  /* Makes it clickable */
+    transition: transform 0.2s ease, opacity 0.3s ease;
 }
 
-button:hover {
-    background-color: #6a7ad5;
+.flying-button:hover {
+    transform: scale(1.1);  /* Adds a hover effect */
+    opacity: 0.8;
 }
 
-/* Flying Snoopy */
+
 .flying-snoopy {
     position: absolute;
     width: 80px;
@@ -99,7 +110,7 @@ button:hover {
 
 @keyframes fly {
     0% { left: -100px; top: 50px; }
-    50% { top: 120px; }
+    50% { left: 50%; top: 120px; transform: translateX(-50%); }
     100% { left: calc(100% + 100px); top: 50px; }
 }
 
@@ -110,9 +121,9 @@ button:hover {
     gap: 10px;
     padding: 20px;
 }
-.grid img {
-    width: 100%;
+.grid img, .character-card img {
+    width: 100%;  /* Ensures images fit their containers */
+    height: 100%; /* Fixed height for uniformity */
+    object-fit: cover; /* Prevents distortion */
     border-radius: 8px;
 }
-
-
