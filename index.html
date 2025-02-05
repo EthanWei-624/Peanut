@@ -3,48 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Peanuts World</title>
     <link rel="stylesheet" href="style.css">
+    <script src="myscripts.js"></script>
 </head>
 <body>
+
     <header>
         <h1>Peanuts World</h1>
     </header>
-    <div class="character-container">
+
+    <main>
+        <div class="snoopy-container">
+            <img src="https://i.pinimg.com/474x/41/c7/57/41c757d83314b3025646e51eb6f89af0.jpg" alt="Snoopy and his House" class="snoopy-image">
+        </div>
+    </main>
+
+    <section class="character-container">
         <div class="character-card" data-character="charlie" onclick="showCharacterSpeech(this, 'HIIII')">
             <div class="character-image"></div>
             <a href="charlie.html" class="character-name">Charlie Brown</a>
         </div>
-         <div class="character-card" data-character="woodstock" onclick="showCharacterSpeech(this, '')">
+        <div class="character-card" data-character="woodstock" onclick="showCharacterSpeech(this, '')">
             <div class="character-image"></div>
-            <a href="woodstock.html" class="character-name">woodstock</a>
+            <a href="woodstock.html" class="character-name">Woodstock</a>
         </div>
-       
+        <div class="character-card" data-character="snoopy" onclick="showCharacterSpeech(this, 'Hello!')">
+            <div class="character-image"></div>
+            <a href="snoopy.html" class="character-name">Snoopy</a>
         </div>
-    </div>
+        <div class="character-card" data-character="lucy" onclick="showCharacterSpeech(this, 'Hi!')">
+            <div class="character-image"></div>
+            <a href="lucy.html" class="character-name">Lucy</a>
+        </div>
+    </section>
+
     <div class="speech-bubble" id="character-speech"></div>
+
     <div class="button-container">
         <button onclick="startFlying()">Start Flying</button>
     </div>
-    <div class="flying-snoopy" id="flying-snoopy"></div>
-    <script>
-        let currentSpeechBubble = null;
 
+    <div class="flying-snoopy" id="flying-snoopy"></div>
+
+    <section class="gallery">
+        <h2>Winter Scenes</h2>
+        <div class="grid">
+            <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2019/12/A-Charlie-Brown-Christmas-Special-Featured-1710x900.jpg" alt="Winter Scene 1">
+            <img src="https://static1.colliderimages.com/wordpress/wp-content/uploads/2023/12/a-charlie-brown-christmas-final-scene-the-peanuts-singing.jpg" alt="Winter Scene 2">
+        </div>
+        <h2>Summer Scenes</h2>
+        <div class="grid">
+            <img src="https://via.placeholder.com/300" alt="Summer Scene 1">
+            <img src="https://via.placeholder.com/300" alt="Summer Scene 2">
+            <img src="https://via.placeholder.com/300" alt="Summer Scene 3">
+            <img src="https://via.placeholder.com/300" alt="Summer Scene 4">
+        </div>
+    </section>
+
+    <script>
         function showCharacterSpeech(element, speech) {
-            if (currentSpeechBubble) {
-                currentSpeechBubble.classList.remove('show');
-            }
-            const speechBubble = document.getElementById('character-speech');
+            let speechBubble = document.getElementById('character-speech');
             speechBubble.textContent = speech;
             speechBubble.style.top = (element.offsetTop + element.offsetHeight) + 'px';
             speechBubble.style.left = (element.offsetLeft + (element.offsetWidth / 2) - (speechBubble.offsetWidth / 2)) + 'px';
             speechBubble.classList.add('show');
-            currentSpeechBubble = speechBubble;
-            element.classList.toggle('clicked');
+
+            setTimeout(() => {
+                speechBubble.classList.remove('show');
+            }, 2000);
         }
+
         function startFlying() {
             document.getElementById('flying-snoopy').style.display = 'block';
         }
     </script>
+
 </body>
 </html>
+
+

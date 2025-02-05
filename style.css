@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #f0f0f0, #d7eaff);
+    background: linear-gradient(to bottom, #eef7ff, #d7eaff);
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,107 +11,67 @@ body {
 }
 
 header {
-    background-color: #a2c8f0;
-    padding: 500px;
+    background-color: rgba(162, 200, 240, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 40px;
     text-align: center;
     width: 100%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #333;
-    font-size: 100px;
-    margin: 0;
-}
-
+/* Character Cards */
 .character-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 20px;
     gap: 15px;
+    padding: 20px;
 }
 
 .character-card {
-    width: 200px;
-    height: 320px;
-    margin: 10px;
-    background-color: #fff;
+    width: 180px;
+    height: 280px;
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
     cursor: pointer;
 }
 
 .character-card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-.character-image {
-    width: 100%;
-    height: 200px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.character-name {
-    padding: 10px;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-}
-
-.character-description {
-    padding: 5px 10px;
-    font-size: 0.9em;
-    text-align: center;
-    color: #666;
-}
-
+/* Speech Bubble */
 .speech-bubble {
     position: absolute;
     background-color: white;
     border: 2px solid #333;
     border-radius: 10px;
-    padding: 15px;
-    max-width: 280px;
+    padding: 10px;
+    max-width: 200px;
     text-align: center;
     display: none;
     z-index: 10;
     animation: fadeIn 0.3s ease;
 }
 
-.speech-bubble::before {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 10px;
-    border-style: solid;
-    border-color: transparent transparent white transparent;
-}
-
 .speech-bubble.show {
     display: block;
 }
 
-.button-container {
-    margin-top: 20px;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
+/* Button */
 button {
     padding: 10px 20px;
-    margin: 5px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -125,45 +85,34 @@ button:hover {
     background-color: #6a7ad5;
 }
 
+/* Flying Snoopy */
 .flying-snoopy {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background-image: url('https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/snoopy-flying-carolyn-w-james.jpg');
     background-size: contain;
     background-repeat: no-repeat;
-    animation: fly 5s linear infinite;
+    animation: fly 6s ease-in-out infinite;
     display: none;
-    z-index: 20;
 }
 
 @keyframes fly {
-    0% {
-        left: -120px;
-        top: 200vh;
-    }
-    50% {
-        top: 250vh;
-    }
-    100% {
-        left: calc(100% + 120px);
-        top: 360vh;
-    }
+    0% { left: -100px; top: 50px; }
+    50% { top: 120px; }
+    100% { left: calc(100% + 100px); top: 50px; }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+/* Image Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+.grid img {
+    width: 100%;
+    border-radius: 8px;
 }
 
-/* Character-specific styles */
-.character-card[data-character="charlie"] .character-image {
-    background-image: url('https://static.wixstatic.com/media/449abe_5bcdc480851443d6b592c87fa3552f4e~mv2.jpg/v1/fill/w_1080,h_1080,al_c,q_85/cb-color.jpg');
-}
-.character-card[data-character="woodstock"] .character-image {
-     background-image: url('https://static.wixstatic.com/media/449abe_da6f6e862186407c867210c856d6e430~mv2.jpg/v1/fill/w_1080,h_1080,al_c,q_85/wo-color.jpg');
-}
+
