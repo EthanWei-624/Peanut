@@ -127,3 +127,9 @@ header {
     object-fit: cover; /* Prevents distortion */
     border-radius: 8px;
 }
+
+
+audio {
+    display: none;
+}
+
